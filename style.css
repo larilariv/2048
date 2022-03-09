@@ -1,3 +1,21 @@
 body {
   background-color: aliceblue;
 }
+
+.game-board {
+  background-color: gray;
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: repeat(4, 150px);
+  justify-content: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.board-tile {
+  background: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+}
