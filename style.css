@@ -5,8 +5,8 @@ body {
 .game-board {
   background-color: gray;
   display: grid;
-  grid-template-columns: repeat(4, 150px);
-  grid-template-rows: repeat(4, 150px);
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
   justify-content: center;
   gap: 5px;
   margin-top: 20px;
