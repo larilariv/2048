@@ -1,35 +1,40 @@
 const gameBoard = document.querySelector(".game-board");
+// assigns div with class of game-board to gameBoard
 
-const boardTiles = document.querySelectorAll(".board-tile");
+let boardGrid = [
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+];
+// layout of board grid,
 
-const totalTiles = boardTiles.length;
+function setNewGame() {
+  for (let x = 0; x < 4; x++) {
+    // x represents row index
+    for (let y = 0; y < 4; y++) {
+      // y represents column index
+      let boardTile = document.createElement("div");
+      boardTile.className = "board-tile";
+      boardTile.id = `(${x}, ${y})`;
+      boardTile.setAttribute("value", 0);
+      // creates a div element with a class of board-tile, id of (x, y), value of 0
+      // to represent every space available on the grid
+      gameBoard.append(boardTile);
+      // board-tile divs are added to the game-board div
+    }
+  }
+}
+const newGameButton = document.querySelector("#new-game-button");
+newGameButton.addEventListener("click", setNewGame());
+// a new board will generate whenever the New Game button is clicked
+
+// function placeNewTile() {
+// if ()
+// }
 
 function getRandomNum(max) {
   let randomNum = Math.floor(Math.random() * max);
   return randomNum;
 }
-
-let availTiles = [];
-let tileValue;
-
-function setStartGrid() {
-  for (let i = 0; i < totalTiles; i++) {
-    tileValue = boardTiles[i].getAttribute("value");
-    tileById = document.getElementById(`${i}`);
-
-    if (tileValue == 0) {
-      availTiles.push(tileById);
-    }
-  }
-  startTile1 = document.getElementById(`${getRandomNum(totalTiles)}`);
-  availTiles.splice([startTile1.id], 1);
-  startTile1.setAttribute("value", 2);
-  startTile1.innerHTML = "2";
-
-  startTile2 = document.getElementById(`${getRandomNum(availTiles.length)}`);
-  availTiles.splice([startTile2.id], 1);
-  startTile2.setAttribute("value", 2);
-  startTile2.innerHTML = "2";
-  console.log(availTiles);
-}
-setStartGrid();
+// // generates random number between 0 and max - 1
