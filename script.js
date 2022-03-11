@@ -2,49 +2,40 @@
 //select 2 random tiles and give them a value of "2"
 //const allTiles = document.querySelector(".board-tile");
 
-// const upButton = document.querySelector("#up-button");
-// const rightButton = document.querySelector("#right-button");
-// const downButton = document.querySelector("#down-button");
-// const leftButton = document.querySelector("#left-button");
-
-// upButton.addEventListener("click", moveTilesUp);
-// rightButton.addEventListener("click", moveTilesRight);
-// downButton.addEventListener("click", moveTilesDown);
-// leftButton.addEventListener("click", moveTilesLeft);
-
 const gameBoard = document.querySelector(".game-board");
+const newGameButton = document.querySelector("#new-game-button");
 
 const totalTiles = 16;
-
-// function placeTile() {
-//   for (i = 1; i <= totalTiles; i++) {
-//     // let tileValue = boardTile.value;
-//     // console.log(tileValue);
-//     console.log(i);
-//     // if (boardTile[i].value === 0) {
-//     //     console.log(boardTile[i].id);
-//     // }
-//   }
-// }
-//console.log(placeTile());
 
 function getRandomNum(max) {
   let randomNum = Math.floor(Math.random() * max);
   return randomNum;
 }
-let randomNum = getRandomNum(totalTiles);
+getRandomNum(totalTiles);
 
-function createGrid() {
+function setStartGrid() {
+  const boardTile = document.getElementsByClassName("board-tile");
+  console.log(boardTile);
   for (let i = 1; i <= totalTiles; i++) {
-    const boardTile = document.querySelector(".board-tile");
-    let tileValue = boardTile.getAttribute("value");
-    console.log(`this is the tileValue: ${tileValue}`);
-    if (tileValue == 0) {
-      console.log(`This tile should get a value of 2: ${randomNum}`);
-      startTile1 = document.getElementById(`tile-${randomNum}`);
-      startTile1.setAttribute("value", 2);
-      startTile1.innerHTML = "2";
-    }
+    //iterates through all tiles
+    // let tileValue = boardTile.getAttribute("value");
+    //all tiles start with a value of 0
+    //console.log(`this is the tileValue: ${tileValue}`);
+    // console.log(`This tile should get a value of 2: ${randomNum}`);
+    // startTile1 = document.getElementById(`tile-${getRandomNum(totalTiles)}`);
+    // console.log(`The first tile is tile-${randomNum}`);
+    // startTile1.setAttribute("value", 2);
+    // startTile1.innerHTML = "2";
+    //assigns a random tile the value of 2, this is the first tile on the board
+    //now startTile1 must be removed as an option
+    // if (tileValue == 0) {
+    //   console.log(`This tile should get a value of 2: ${randomNum}`);
+    //   startTile2 = document.getElementById(`tile-${randomNum}`);
+    //   startTile2.setAttribute("value", 2);
+    //   startTile2.innerHTML = "2";
+    // }
   }
 }
-createGrid();
+setStartGrid();
+
+newGameButton.addEventListener("click", setStartGrid());
