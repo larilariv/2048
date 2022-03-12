@@ -1,37 +1,55 @@
 const gameBoard = document.querySelector(".game-board");
-// assigns div with class of game-board to gameBoard
 
-let boardGrid = [
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-];
-// layout of board grid,
+let boardGrid = [];
+
+let boardTile;
+let xAxis;
+let yAxis;
 
 function setNewGame() {
-  for (let x = 0; x < 4; x++) {
-    // x represents row index
-    for (let y = 0; y < 4; y++) {
-      // y represents column index
-      let boardTile = document.createElement("div");
+  for (let xAxis = 0; xAxis < 4; xAxis++) {
+    for (let yAxis = 0; yAxis < 4; yAxis++) {
+      boardTile = document.createElement("div");
       boardTile.className = "board-tile";
-      boardTile.id = `(${x}, ${y})`;
+      boardTile.classList.add(`x-${xAxis}`);
+      boardTile.classList.add(`y-${yAxis}`);
       boardTile.setAttribute("value", 0);
-      // creates a div element with a class of board-tile, id of (x, y), value of 0
-      // to represent every space available on the grid
       gameBoard.append(boardTile);
-      // board-tile divs are added to the game-board div
     }
+    boardGrid.push(document.getElementsByClassName(`x-${xAxis}`));
   }
+  return gameBoard;
 }
-const newGameButton = document.querySelector("#new-game-button");
-newGameButton.addEventListener("click", setNewGame());
+setNewGame();
+console.log(boardGrid);
+
+// const newGameButton = document.querySelector("#new-game-button");
+// newGameButton.addEventListener("click", setNewGame());
 // a new board will generate whenever the New Game button is clicked
 
-// function placeNewTile() {
-// if ()
-// }
+function placeNewTile() {
+  let randomRow = getRandomNum(boardGrid.length);
+  //   console.log(randomRow);
+  let randomColumn = getRandomNum(boardGrid[0].length);
+  //   console.log(randomColumn);
+  if (boardGrid[randomRow][randomColumn] === 0) {
+    boardGrid[randomRow][randomColumn] = 2;
+    // console.log(boardGrid);
+  } else {
+    randomRow = getRandomNum(boardGrid.length);
+    // console.log(randomRow);
+    randomColumn = getRandomNum(boardGrid[0].length);
+    // console.log(randomColumn);
+  }
+
+  //assign 2 variables, random row and random column
+  //random row would be somewhere between 0 and boardgrid.length
+  //random column would be anywhere between 0 and board[0].length
+  //if boardGrid [random-row][random-column] === 0
+  //then boardGrid [random-row][random-column] = 2
+  //might have to run while loop
+}
+// placeNewTile();
 
 function getRandomNum(max) {
   let randomNum = Math.floor(Math.random() * max);
