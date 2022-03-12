@@ -18,41 +18,31 @@ function setNewGame() {
     }
     boardGrid.push(document.getElementsByClassName(`x-${xAxis}`));
   }
+  genNewTile();
+  genNewTile();
   return gameBoard;
 }
 setNewGame();
-console.log(boardGrid);
+// find way to load boardGrid on page load so the board is set up to play right away
+// find way to reload boardGrid on click of New Game button
 
 // const newGameButton = document.querySelector("#new-game-button");
 // newGameButton.addEventListener("click", setNewGame());
 // a new board will generate whenever the New Game button is clicked
 
-function placeNewTile() {
+function genNewTile() {
   let randomRow = getRandomNum(boardGrid.length);
-  //   console.log(randomRow);
   let randomColumn = getRandomNum(boardGrid[0].length);
-  //   console.log(randomColumn);
-  if (boardGrid[randomRow][randomColumn] === 0) {
-    boardGrid[randomRow][randomColumn] = 2;
-    // console.log(boardGrid);
+  randomTile = boardGrid[randomRow][randomColumn];
+  if (randomTile.getAttribute("value") === "0") {
+    randomTile.setAttribute("value", 2);
+    randomTile.innerText = randomTile.getAttribute("value");
   } else {
-    randomRow = getRandomNum(boardGrid.length);
-    // console.log(randomRow);
-    randomColumn = getRandomNum(boardGrid[0].length);
-    // console.log(randomColumn);
+    genNewTile();
   }
-
-  //assign 2 variables, random row and random column
-  //random row would be somewhere between 0 and boardgrid.length
-  //random column would be anywhere between 0 and board[0].length
-  //if boardGrid [random-row][random-column] === 0
-  //then boardGrid [random-row][random-column] = 2
-  //might have to run while loop
 }
-// placeNewTile();
 
 function getRandomNum(max) {
   let randomNum = Math.floor(Math.random() * max);
   return randomNum;
 }
-// // generates random number between 0 and max - 1
