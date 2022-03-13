@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Let's Play 2048</title>
   </head>
   <body>
@@ -18,31 +24,14 @@
       dolore saepe perspiciatis deserunt numquam dolorum quod, amet eum
       similique eligendi suscipit beatae eius.
     </p>
-    <button type="submit">New Game</button>
+    <button type="submit" id="new-game-button">New Game</button>
     <div class="game-controls">
       <button type="submit" id="up-button">Up</button>
       <button type="submit" id="right-button">Right</button>
       <button type="submit" id="down-button">Down</button>
       <button type="submit" id="left-button">Left</button>
     </div>
-    <div class="game-board">
-      <div class="board-tile" id="tile-1" value="0"></div>
-      <div class="board-tile" id="tile-2" value="0"></div>
-      <div class="board-tile" id="tile-3" value="0"></div>
-      <div class="board-tile" id="tile-4" value="0"></div>
-      <div class="board-tile" id="tile-5" value="0"></div>
-      <div class="board-tile" id="tile-6" value="0"></div>
-      <div class="board-tile" id="tile-7" value="0"></div>
-      <div class="board-tile" id="tile-8" value="0"></div>
-      <div class="board-tile" id="tile-9" value="0"></div>
-      <div class="board-tile" id="tile-10" value="0"></div>
-      <div class="board-tile" id="tile-11" value="0"></div>
-      <div class="board-tile" id="tile-12" value="0"></div>
-      <div class="board-tile" id="tile-13" value="0"></div>
-      <div class="board-tile" id="tile-14" value="0"></div>
-      <div class="board-tile" id="tile-15" value="0"></div>
-      <div class="board-tile" id="tile-16" value="0"></div>
-    </div>
+    <div class="game-board"></div>
     <script src="script.js"></script>
   </body>
 </html>
