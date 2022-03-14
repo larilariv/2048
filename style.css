@@ -1,5 +1,5 @@
 body {
-  background-color: aliceblue;
+  background-color: rgb(235, 235, 235);
   font-family: "Comfortaa", cursive;
 }
 
@@ -13,13 +13,71 @@ body {
   grid-template-rows: repeat(4, 100px);
   justify-content: center;
   margin: 0 auto;
+  border: 5px solid gray;
+  border-radius: 5px;
 }
 
 .board-tile {
-  background: lightgray;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid black;
+  border: 5px solid gray;
+  border-radius: 5px;
   font-size: 40px;
+}
+
+div[value="0"] {
+  background-color: lightgray;
+}
+
+div[value="2"] {
+  background-color: #4681ca;
+}
+
+div[value="4"] {
+  background-color: #008fd6;
+}
+
+div[value="8"] {
+  background-color: #1ba8c4;
+}
+
+div[value="16"] {
+  background-color: #35c1b1;
+}
+
+div[value="32"] {
+  background-color: #75cd71;
+}
+
+div[value="64"] {
+  background-color: #b5d931;
+}
+
+div[value="128"] {
+  background-color: #ffef00;
+}
+
+div[value="256"] {
+  background-color: #ffca00;
+}
+
+div[value="512"] {
+  background-color: #ffa500;
+}
+
+div[value="1024"] {
+  background-color: #f6731b;
+}
+
+div[value="2048"] {
+  background-color: #ec4135;
+}
+
+div[value="4096"] {
+  background-color: #c6364f;
+}
+
+div[value="8192"] {
+  background-color: #9f2b68;
 }
