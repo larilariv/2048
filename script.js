@@ -38,7 +38,7 @@ function genNewTile() {
   let randomRow = getRandomNum(boardGrid.length);
   let randomColumn = getRandomNum(boardGrid[0].length);
   randomTile = boardGrid[randomRow][randomColumn];
-  if (randomTile.getAttribute("value") === "0") {
+  if (randomTile.getAttribute("value") == 0) {
     randomTile.setAttribute("value", 2);
     randomTile.innerText = randomTile.getAttribute("value");
   } else {
@@ -51,32 +51,39 @@ function getRandomNum(max) {
   return randomNum;
 }
 
+let currentTile;
+let nextTile;
+let tileValue;
+
 function moveTilesUp() {
   for (let yAxis = 0; yAxis < 4; yAxis++) {
-    for (let xAxis = 0; xAxis < 4; xAxis++) {
-      if (boardGrid[xAxis][yAxis].getAttribute("value") > 0) {
-        if (
-          boardGrid[xAxis][yAxis].getAttribute("value") ===
-          boardGrid[xAxis - 1][yAxis].getAttribute("value")
-        ) {
+    for (let xAxis = 1; xAxis < 4; xAxis++) {
+
+      if (parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) > 0) {
+        //If the next tile up has a value greater than 0
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"))) {
+          //If the value of the current tile is equal to the value of the next tile
           sumOfTiles =
-            boardGrid[xAxis][yAxis].getAttribute("value") +
-            boardGrid[xAxis - 1][yAxis].getAttribute("value");
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+            parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
+          //The sum of both tile values will be assigned to the variable sumOfTiles
           boardGrid[xAxis - 1][yAxis].setAttribute("value", sumOfTiles);
           boardGrid[xAxis - 1][yAxis].innerText = sumOfTiles;
+          //The next tile up will be given the vaule and innerText of sumOfTiles
         }
-        while (boardGrid[xAxis - 1][yAxis].getAttribute("value") == 0) {
-          boardGrid[xAxis - 1][yAxis].setAttribute(
-            "value",
-            boardGrid[xAxis][yAxis].getAttribute("value")
-          );
-          boardGrid[xAxis - 1][yAxis].innerText =
-            boardGrid[xAxis - 1][yAxis].getAttribute("value");
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          boardGrid[xAxis][yAxis].innerText = "";
-          xAxis--;
-          if (xAxis <= 0) break;
-        }
+      }
+      while (parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) === 0) {
+        //As long as the next tile up has a value of 0
+        boardGrid[xAxis - 1][yAxis].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
+        boardGrid[xAxis - 1][yAxis].innerText = parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
+        //Set the value and innerText of the next tile up to the value and innerText of the current tile
+        boardGrid[xAxis][yAxis].setAttribute("value", 0);
+        boardGrid[xAxis][yAxis].innerText = "";
+        //Set the value and innerText of the current tile to 0/blank
+        xAxis--;
+        //Iterate up the column
+        if (xAxis <= 0 && yAxis <= 0) break;
+        //If you hit the top of the board, stop
       }
     }
   }

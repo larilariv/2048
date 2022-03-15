@@ -1,6 +1,17 @@
 body {
   background-color: rgb(235, 235, 235);
   font-family: "Comfortaa", cursive;
+  text-align: center;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2,
+h3,
+h4 {
+  font-size: 20px;
 }
 
 .game-board {
