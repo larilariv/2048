@@ -33,8 +33,6 @@ h4 {
   align-items: center;
   justify-content: center;
   border: 5px solid gray;
-  border-radius: 5px;
-  font-size: 40px;
 }
 
 div[value="0"] {
@@ -42,53 +40,79 @@ div[value="0"] {
 }
 
 div[value="2"] {
-  background-color: #4681ca;
+  content: url(/Images/2Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="4"] {
-  background-color: #008fd6;
+  content: url(/Images/4Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="8"] {
-  background-color: #1ba8c4;
+  content: url(/Images/8Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="16"] {
-  background-color: #35c1b1;
+  content: url(/Images/16Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="32"] {
-  background-color: #75cd71;
+  content: url(/Images/32Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="64"] {
-  background-color: #b5d931;
+  content: url(/Images/64Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="128"] {
-  background-color: #ffef00;
+  content: url(/Images/128Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="256"] {
-  background-color: #ffca00;
+  content: url(/Images/256Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="512"] {
-  background-color: #ffa500;
+  content: url(/Images/512Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="1024"] {
-  background-color: #f6731b;
+  content: url(/Images/1024Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="2048"] {
-  background-color: #ec4135;
+  content: url(/Images/2048Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="4096"] {
-  background-color: #c6364f;
+  content: url(/Images/4096Tile.png);
+  height: 90px;
+  width: 90px;
 }
 
 div[value="8192"] {
-  background-color: #9f2b68;
+  content: url(/Images/8192Tile.png);
+  height: 90px;
+  width: 90px;
 }
