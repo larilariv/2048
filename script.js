@@ -63,174 +63,142 @@ function getRandomNum(max) {
   return randomNum;
 }
 
-let currentTile;
-let nextTile;
-let tileValue;
-
 function moveTilesUp() {
   for (let yAxis = 0; yAxis <= 3; yAxis++) {
     for (let xAxis = 1; xAxis <= 3; xAxis++) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempXAxis = xAxis;
         while (
-          parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) == 0
+          parseInt(boardGrid[tempXAxis - 1][yAxis].getAttribute("value")) == 0
         ) {
-          boardGrid[xAxis - 1][yAxis].setAttribute(
+          boardGrid[tempXAxis - 1][yAxis].setAttribute(
             "value",
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
           );
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          xAxis--;
-          if (xAxis == 0) break;
+          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
+          tempXAxis--;
+          if (tempXAxis == 0) break;
         }
-        if (
-          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
-          parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"))
-        ) {
-          sumOfTiles =
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
-            parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
-          boardGrid[xAxis - 1][yAxis].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        }
-        // while (
-        //   parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) == 0
-        // ) {
-        //   boardGrid[xAxis - 1][yAxis].setAttribute(
-        //     "value",
-        //     parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
-        //   );
-        //   boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        //   xAxis--;
-        //   if (xAxis == 0) break;
-        // }
+      }
+    }
+    for (let xAxis = 0; xAxis <= 2; xAxis++) {
+      if (
+        parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+        parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"))
+      ) {
+        sumOfTiles =
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+          parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
+        boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
+        boardGrid[xAxis + 1][yAxis].setAttribute("value", 0);
       }
     }
   }
   genNewTile();
 }
+
 function moveTilesLeft() {
   for (let xAxis = 0; xAxis <= 3; xAxis++) {
     for (let yAxis = 1; yAxis <= 3; yAxis++) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempYAxis = yAxis;
         while (
-          parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value")) == 0
+          parseInt(boardGrid[xAxis][tempYAxis - 1].getAttribute("value")) == 0
         ) {
-          boardGrid[xAxis][yAxis - 1].setAttribute(
+          boardGrid[xAxis][tempYAxis - 1].setAttribute(
             "value",
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
           );
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          yAxis--;
-          if (yAxis == 0) break;
+          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
+          tempYAxis--;
+          if (tempYAxis == 0) break;
         }
-        if (
-          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
-          parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"))
-        ) {
-          sumOfTiles =
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
-            parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"));
-          boardGrid[xAxis][yAxis - 1].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        }
-        // while (
-        //   parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value")) == 0
-        // ) {
-        //   boardGrid[xAxis][yAxis - 1].setAttribute(
-        //     "value",
-        //     parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
-        //   );
-        //   boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        //   yAxis--;
-        //   if (yAxis == 0) break;
-        // }
+      }
+    }
+    for (let yAxis = 0; yAxis <= 2; yAxis++) {
+      if (
+        parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+        parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"))
+      ) {
+        sumOfTiles =
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+          parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"));
+        boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
+        boardGrid[xAxis][yAxis + 1].setAttribute("value", 0);
       }
     }
   }
   genNewTile();
 }
+
 function moveTilesDown() {
   for (let yAxis = 3; yAxis >= 0; yAxis--) {
     for (let xAxis = 2; xAxis >= 0; xAxis--) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempXAxis = xAxis;
         while (
-          parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value")) == 0
+          parseInt(boardGrid[tempXAxis + 1][yAxis].getAttribute("value")) == 0
         ) {
-          boardGrid[xAxis + 1][yAxis].setAttribute(
+          boardGrid[tempXAxis + 1][yAxis].setAttribute(
             "value",
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
           );
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          xAxis++;
-          if (xAxis == 3) break;
+          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
+          tempXAxis++;
+          if (tempXAxis == 3) break;
         }
-        if (
-          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
-          parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"))
-        ) {
-          sumOfTiles =
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
-            parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
-          boardGrid[xAxis + 1][yAxis].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        }
-        // while (
-        //   parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value")) == 0
-        // ) {
-        //   boardGrid[xAxis + 1][yAxis].setAttribute(
-        //     "value",
-        //     parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
-        //   );
-        //   boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        //   xAxis++;
-        //   if (xAxis == 3) break;
-        // }
+      }
+    }
+    for (let xAxis = 3; xAxis >= 1; xAxis--) {
+      if (
+        parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+        parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"))
+      ) {
+        sumOfTiles =
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+          parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
+        boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
+        boardGrid[xAxis - 1][yAxis].setAttribute("value", 0);
       }
     }
   }
   genNewTile();
 }
+
 function moveTilesRight() {
   for (let xAxis = 3; xAxis >= 0; xAxis--) {
     for (let yAxis = 2; yAxis >= 0; yAxis--) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempYAxis = yAxis;
         while (
-          parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value")) == 0
+          parseInt(boardGrid[xAxis][tempYAxis + 1].getAttribute("value")) == 0
         ) {
-          boardGrid[xAxis][yAxis + 1].setAttribute(
+          boardGrid[xAxis][tempYAxis + 1].setAttribute(
             "value",
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
           );
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          xAxis++;
-          if (xAxis == 3) break;
+          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
+          tempYAxis++;
+          if (tempYAxis == 3) break;
         }
-        if (
-          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
-          parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"))
-        ) {
-          sumOfTiles =
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
-            parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"));
-          boardGrid[xAxis][yAxis + 1].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        }
-        // while (
-        //   parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value")) == 0
-        // ) {
-        //   boardGrid[xAxis][yAxis + 1].setAttribute(
-        //     "value",
-        //     parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
-        //   );
-        //   boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        //   xAxis++;
-        //   if (xAxis == 3) break;
-        // }
+      }
+    }
+    for (let yAxis = 3; yAxis >= 1; yAxis--) {
+      if (
+        parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+        parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"))
+      ) {
+        sumOfTiles =
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+          parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"));
+        boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
+        boardGrid[xAxis][yAxis - 1].setAttribute("value", 0);
       }
     }
   }
   genNewTile();
 }
+
 const upButton = document.querySelector("#up-button");
 const rightButton = document.querySelector("#right-button");
 const downButton = document.querySelector("#down-button");
