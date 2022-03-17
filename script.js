@@ -22,7 +22,7 @@ function setNewGame() {
   genNewTile();
   //   return gameBoard;
 }
-// setNewGame();
+setNewGame();
 // find way to load boardGrid on page load so the board is set up to play right away
 // find way to reload boardGrid on click of New Game button
 //~10 lines of code 30min of work
@@ -30,9 +30,25 @@ function setNewGame() {
 // $("#mydiv").load(location.href + " #mydiv");
 //Highest Score- look into local storage
 
+// $("#new-game-Button").click(setNewGame() {
+//   $(".game-board").load(".game-board");
+// })
+
+// function resetBoard() {
+//   $(".game-board").load(location.href + " .game-board .board-tile");
+// }
+
+
+function reload() {
+reload = location.reload();
+}
+
 const newGameButton = document.querySelector("#new-game-button");
-newGameButton.addEventListener("click", setNewGame());
-// a new board will generate whenever the New Game button is clicked
+newGameButton.addEventListener("click", reload, false);
+//^Works for reloading the whole page on click of New Game button
+// need to work on on reloading only the board on click of New Game Button
+
+
 
 function genNewTile() {
   let randomRow = getRandomNum(boardGrid.length);
@@ -75,7 +91,7 @@ function moveTilesUp() {
   }
   genNewTile();
 }
-function moveTilesRight() {
+function moveTilesLeft() {
   for (let xAxis = 0; xAxis <= 3; xAxis++) {
     for (let yAxis = 1; yAxis <= 3; yAxis++) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
@@ -113,7 +129,7 @@ function moveTilesDown() {
   }
   genNewTile();
 }
-function moveTilesLeft() {
+function moveTilesRight() {
   for (let xAxis = 3; xAxis >= 0; xAxis--) {
     for (let yAxis = 2; yAxis >= 0; yAxis--) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
