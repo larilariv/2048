@@ -40,7 +40,6 @@ function genNewTile() {
   randomTile = boardGrid[randomRow][randomColumn];
   if (randomTile.getAttribute("value") == 0) {
     randomTile.setAttribute("value", 2);
-    randomTile.innerText = randomTile.getAttribute("value");
   } else {
     genNewTile();
   }
@@ -56,143 +55,89 @@ let nextTile;
 let tileValue;
 
 function moveTilesUp() {
-  for (let yAxis = 0; yAxis < 4; yAxis++) {
-    for (let xAxis = 1; xAxis < 4; xAxis++) {
-
-      if (parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) > 0) {
-        //If the next tile up has a value greater than 0
-        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"))) {
-          //If the value of the current tile is equal to the value of the next tile
-          sumOfTiles =
-            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
-            parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
-          //The sum of both tile values will be assigned to the variable sumOfTiles
+  for (let yAxis = 0; yAxis <= 3; yAxis++) {
+    for (let xAxis = 1; xAxis <= 3; xAxis++) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"))
+        ) {sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
           boardGrid[xAxis - 1][yAxis].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis - 1][yAxis].innerText = sumOfTiles;
-          //The next tile up will be given the vaule and innerText of sumOfTiles
         }
-      }
-      while (parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) === 0) {
-        //As long as the next tile up has a value of 0
-        boardGrid[xAxis - 1][yAxis].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
-        boardGrid[xAxis - 1][yAxis].innerText = parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
-        //Set the value and innerText of the next tile up to the value and innerText of the current tile
-        boardGrid[xAxis][yAxis].setAttribute("value", 0);
-        boardGrid[xAxis][yAxis].innerText = "";
-        //Set the value and innerText of the current tile to 0/blank
-        xAxis--;
-        //Iterate up the column
-        if (xAxis <= 0 && yAxis <= 0) break;
-        //If you hit the top of the board, stop
-      }
-    }
-  }
-  genNewTile();
-}
-
-const upButton = document.querySelector("#up-button");
-upButton.addEventListener("click", moveTilesUp);
-
-function moveTilesDown() {
-  for (let yAxis = 3; yAxis > -1; yAxis--) {
-    for (let xAxis = 3; xAxis > -1; xAxis--) {
-      if (boardGrid[xAxis][yAxis].getAttribute("value") > 0) {
-        if (
-          boardGrid[xAxis][yAxis].getAttribute("value") ===
-          boardGrid[xAxis + 1][yAxis].getAttribute("value")
+        while (
+          parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) == 0
         ) {
-          sumOfTiles =
-            boardGrid[xAxis][yAxis].getAttribute("value") +
-            boardGrid[xAxis + 1][yAxis].getAttribute("value");
-          boardGrid[xAxis + 1][yAxis].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis + 1][yAxis].innerText = sumOfTiles;
-        }
-        while (boardGrid[xAxis + 1][yAxis].getAttribute("value") == 0) {
-          boardGrid[xAxis + 1][yAxis].setAttribute(
-            "value",
-            boardGrid[xAxis][yAxis].getAttribute("value")
-          );
-          boardGrid[xAxis + 1][yAxis].innerText =
-            boardGrid[xAxis + 1][yAxis].getAttribute("value");
+          boardGrid[xAxis - 1][yAxis].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
           boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          boardGrid[xAxis][yAxis].innerText = "";
-          xAxis++;
-          if (xAxis >= 3) break;
+          xAxis--;
+          if (xAxis == 0) break;
         }
       }
     }
   }
   genNewTile();
 }
-const downButton = document.querySelector("#down-button");
-downButton.addEventListener("click", moveTilesDown);
-
 function moveTilesRight() {
-  for (let xAxis = 3; xAxis > -1; xAxis--) {
-    for (let yAxis = 3; yAxis > -1; yAxis--) {
-      if (boardGrid[xAxis][yAxis].getAttribute("value") > 0) {
-        if (
-          boardGrid[xAxis][yAxis].getAttribute("value") ===
-          boardGrid[xAxis][yAxis + 1].getAttribute("value")
-        ) {
-          sumOfTiles =
-            boardGrid[xAxis][yAxis].getAttribute("value") +
-            boardGrid[xAxis][yAxis + 1].getAttribute("value");
-          boardGrid[xAxis][yAxis + 1].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis][yAxis + 1].innerText = sumOfTiles;
-        }
-        while (boardGrid[xAxis][yAxis + 1].getAttribute("value") == 0) {
-          boardGrid[xAxis][yAxis + 1].setAttribute(
-            "value",
-            boardGrid[xAxis][yAxis].getAttribute("value")
-          );
-          boardGrid[xAxis][yAxis + 1].innerText =
-            boardGrid[xAxis][yAxis + 1].getAttribute("value");
-          boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          boardGrid[xAxis][yAxis].innerText = "";
-          yAxis++;
-          if (yAxis >= 3) break;
-        }
-      }
-    }
-  }
-  genNewTile();
-}
-
-const rightButton = document.querySelector("#right-button");
-rightButton.addEventListener("click", moveTilesRight);
-
-function moveTilesLeft() {
-  for (let xAxis = 0; xAxis < 4; xAxis++) {
-    for (let yAxis = 0; yAxis < 4; yAxis++) {
-      if (boardGrid[xAxis][yAxis].getAttribute("value") > 0) {
-        if (
-          boardGrid[xAxis][yAxis].getAttribute("value") ===
-          boardGrid[xAxis][yAxis - 1].getAttribute("value")
-        ) {
-          sumOfTiles =
-            boardGrid[xAxis][yAxis].getAttribute("value") +
-            boardGrid[xAxis][yAxis - 1].getAttribute("value");
+  for (let xAxis = 0; xAxis <= 3; xAxis++) {
+    for (let yAxis = 1; yAxis <= 3; yAxis++) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"))) {
+          sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"));
           boardGrid[xAxis][yAxis - 1].setAttribute("value", sumOfTiles);
-          boardGrid[xAxis][yAxis - 1].innerText = sumOfTiles;
         }
-        while (boardGrid[xAxis][yAxis - 1].getAttribute("value") == 0) {
-          boardGrid[xAxis][yAxis - 1].setAttribute(
-            "value",
-            boardGrid[xAxis][yAxis].getAttribute("value")
-          );
-          boardGrid[xAxis][yAxis - 1].innerText =
-            boardGrid[xAxis][yAxis - 1].getAttribute("value");
+        while (parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value")) == 0) {
+          boardGrid[xAxis][yAxis - 1].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
           boardGrid[xAxis][yAxis].setAttribute("value", 0);
-          boardGrid[xAxis][yAxis].innerText = "";
           yAxis--;
-          if (yAxis <= 0) break;
+          if (yAxis == 0) break;
         }
       }
     }
   }
   genNewTile();
 }
-
+function moveTilesDown() {
+  for (let yAxis = 3; yAxis >= 0; yAxis--) {
+    for (let xAxis = 2; xAxis >= 0; xAxis--) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"))) {
+          sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
+          boardGrid[xAxis + 1][yAxis].setAttribute("value", sumOfTiles);
+        }
+        while (parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value")) == 0) {
+          boardGrid[xAxis + 1][yAxis].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
+          boardGrid[xAxis][yAxis].setAttribute("value", 0);
+          xAxis++;
+          if (xAxis == 3) break;
+        }
+      }
+    }
+  }
+  genNewTile();
+}
+function moveTilesLeft() {
+  for (let xAxis = 3; xAxis >= 0; xAxis--) {
+    for (let yAxis = 2; yAxis >= 0; yAxis--) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"))) {
+          sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"));
+          boardGrid[xAxis][yAxis + 1].setAttribute("value", sumOfTiles);
+        }
+        while (parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value")) == 0) {
+          boardGrid[xAxis][yAxis + 1].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
+          boardGrid[xAxis][yAxis].setAttribute("value", 0);
+          xAxis++;
+          if (xAxis == 3) break;
+        }
+      }
+    }
+  }
+  genNewTile();
+}
+const upButton = document.querySelector("#up-button");
+const rightButton = document.querySelector("#right-button");
+const downButton = document.querySelector("#down-button");
 const leftButton = document.querySelector("#left-button");
+
+upButton.addEventListener("click", moveTilesUp);
+rightButton.addEventListener("click", moveTilesRight);
+downButton.addEventListener("click", moveTilesDown);
 leftButton.addEventListener("click", moveTilesLeft);
