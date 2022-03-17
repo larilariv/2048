@@ -5,38 +5,36 @@ body {
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 100px;
+  margin: 0vw 01vh;
 }
 
-h2,
-h3,
-h4 {
-  font-size: 20px;
+#board-scores-controls {
+  display: flex;
+  justify-content: center;
 }
 
 .game-board {
   background-color: gray;
   height: 400px;
   width: 400px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: repeat(4, 100px);
-  justify-content: center;
-  margin: 0 auto;
-  border: 5px solid gray;
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(4, 25%);
+  border: 5px solid #808080;
   border-radius: 5px;
+  margin: 50px;
 }
 
 .board-tile {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid gray;
+  border: 5px solid #808080;
 }
 
 div[value="0"] {
-  background-color: lightgray;
+  background-color: #d3d3d3;
 }
 
 div[value="2"] {
@@ -115,4 +113,90 @@ div[value="8192"] {
   content: url(/Images/8192Tile.png);
   height: 90px;
   width: 90px;
+}
+
+h2,
+h3 {
+  font-size: 20px;
+}
+
+#scores-controls {
+  /* background-color: lightpink; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 450px;
+  width: 400px;
+  margin: 50px;
+}
+
+/* Score Counters */
+
+/* #score-counters {
+  background-color: yellowgreen;
+} */
+
+/* Game Buttons */
+
+/* #game-buttons {
+  background-color: lightskyblue;
+} */
+
+#new-game-button {
+  background-color: transparent;
+  border: none;
+  padding: none;
+}
+
+#new-game-img {
+  height: 75px;
+  width: 75px;
+}
+
+.direction-button {
+  background-color: transparent;
+  border: none;
+  padding: none;
+}
+
+.direction-img {
+  height: 75px;
+  width: 75px;
+}
+
+#left-button {
+  margin-right: 50px;
+}
+
+#right-button {
+  margin-left: 50px;
+}
+
+/* Instructions */
+
+#game-instructions {
+  background-color: lightseagreen;
+}
+
+#instructions-header {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+}
+
+#show-instructions-img {
+  height: 20px;
+  width: 20px;
+}
+
+#show-instructions {
+  background-color: transparent;
+  border: none;
+  font-family: "Comfortaa", cursive;
+  font-size: 30px;
+  margin: 5px;
+}
+
+#instruction-text {
+  display: none;
 }

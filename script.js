@@ -38,17 +38,14 @@ setNewGame();
 //   $(".game-board").load(location.href + " .game-board .board-tile");
 // }
 
-
 function reload() {
-reload = location.reload();
+  reload = location.reload();
 }
 
 const newGameButton = document.querySelector("#new-game-button");
 newGameButton.addEventListener("click", reload, false);
 //^Works for reloading the whole page on click of New Game button
 // need to work on on reloading only the board on click of New Game Button
-
-
 
 function genNewTile() {
   let randomRow = getRandomNum(boardGrid.length);
@@ -74,14 +71,22 @@ function moveTilesUp() {
   for (let yAxis = 0; yAxis <= 3; yAxis++) {
     for (let xAxis = 1; xAxis <= 3; xAxis++) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"))
-        ) {sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
+        if (
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+          parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"))
+        ) {
+          sumOfTiles =
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+            parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
           boardGrid[xAxis - 1][yAxis].setAttribute("value", sumOfTiles);
         }
         while (
           parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value")) == 0
         ) {
-          boardGrid[xAxis - 1][yAxis].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
+          boardGrid[xAxis - 1][yAxis].setAttribute(
+            "value",
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+          );
           boardGrid[xAxis][yAxis].setAttribute("value", 0);
           xAxis--;
           if (xAxis == 0) break;
@@ -95,12 +100,22 @@ function moveTilesLeft() {
   for (let xAxis = 0; xAxis <= 3; xAxis++) {
     for (let yAxis = 1; yAxis <= 3; yAxis++) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"))) {
-          sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"));
+        if (
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+          parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"))
+        ) {
+          sumOfTiles =
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+            parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"));
           boardGrid[xAxis][yAxis - 1].setAttribute("value", sumOfTiles);
         }
-        while (parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value")) == 0) {
-          boardGrid[xAxis][yAxis - 1].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
+        while (
+          parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value")) == 0
+        ) {
+          boardGrid[xAxis][yAxis - 1].setAttribute(
+            "value",
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+          );
           boardGrid[xAxis][yAxis].setAttribute("value", 0);
           yAxis--;
           if (yAxis == 0) break;
@@ -114,12 +129,22 @@ function moveTilesDown() {
   for (let yAxis = 3; yAxis >= 0; yAxis--) {
     for (let xAxis = 2; xAxis >= 0; xAxis--) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"))) {
-          sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
+        if (
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+          parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"))
+        ) {
+          sumOfTiles =
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+            parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
           boardGrid[xAxis + 1][yAxis].setAttribute("value", sumOfTiles);
         }
-        while (parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value")) == 0) {
-          boardGrid[xAxis + 1][yAxis].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
+        while (
+          parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value")) == 0
+        ) {
+          boardGrid[xAxis + 1][yAxis].setAttribute(
+            "value",
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+          );
           boardGrid[xAxis][yAxis].setAttribute("value", 0);
           xAxis++;
           if (xAxis == 3) break;
@@ -133,12 +158,22 @@ function moveTilesRight() {
   for (let xAxis = 3; xAxis >= 0; xAxis--) {
     for (let yAxis = 2; yAxis >= 0; yAxis--) {
       if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) === parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"))) {
-          sumOfTiles = parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) + parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"));
+        if (
+          parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) ===
+          parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"))
+        ) {
+          sumOfTiles =
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) +
+            parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"));
           boardGrid[xAxis][yAxis + 1].setAttribute("value", sumOfTiles);
         }
-        while (parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value")) == 0) {
-          boardGrid[xAxis][yAxis + 1].setAttribute("value", parseInt(boardGrid[xAxis][yAxis].getAttribute("value")));
+        while (
+          parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value")) == 0
+        ) {
+          boardGrid[xAxis][yAxis + 1].setAttribute(
+            "value",
+            parseInt(boardGrid[xAxis][yAxis].getAttribute("value"))
+          );
           boardGrid[xAxis][yAxis].setAttribute("value", 0);
           xAxis++;
           if (xAxis == 3) break;
@@ -157,3 +192,18 @@ upButton.addEventListener("click", moveTilesUp);
 rightButton.addEventListener("click", moveTilesRight);
 downButton.addEventListener("click", moveTilesDown);
 leftButton.addEventListener("click", moveTilesLeft);
+
+function showInstructions() {
+  let instructions = document.getElementById("instruction-text");
+  let instructionsImage = document.getElementById("show-instructions-img");
+  if (instructions.style.display == "none") {
+    instructions.style.display = "block";
+    instructionsImage.src = "/Images/InstructionsToggle1A.svg";
+  } else {
+    instructions.style.display = "none";
+    instructionsImage.src = "/Images/InstructionsToggle1B.svg";
+  }
+}
+
+const showInstructionsButton = document.getElementById("show-instructions");
+showInstructionsButton.addEventListener("click", showInstructions);
