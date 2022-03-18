@@ -47,6 +47,23 @@ newGameButton.addEventListener("click", reload, false);
 //^Works for reloading the whole page on click of New Game button
 // need to work on on reloading only the board on click of New Game Button
 
+function getRandomNum(max) {
+  let randomNum = Math.floor(Math.random() * max);
+  return randomNum;
+}
+
+function calculateScore() {
+  currentScoreCounter = 0;
+  for (let xAxis = 0; xAxis <= 3; xAxis++) {
+    for (let yAxis = 0; yAxis <= 3; yAxis++) {
+      tileValue = parseInt(boardGrid[xAxis][yAxis].getAttribute("value"));
+      currentScoreCounter += tileValue;
+      document.querySelector("#current-score-counter").innerHTML =
+        currentScoreCounter;
+    }
+  }
+}
+
 function genNewTile() {
   let randomRow = getRandomNum(boardGrid.length);
   let randomColumn = getRandomNum(boardGrid[0].length);
@@ -56,11 +73,7 @@ function genNewTile() {
   } else {
     genNewTile();
   }
-}
-
-function getRandomNum(max) {
-  let randomNum = Math.floor(Math.random() * max);
-  return randomNum;
+  calculateScore();
 }
 
 function moveTilesUp() {
@@ -91,6 +104,22 @@ function moveTilesUp() {
           parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis + 1][yAxis].setAttribute("value", 0);
+      }
+    }
+    for (let xAxis = 1; xAxis <= 3; xAxis++) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempXAxis = xAxis;
+        while (
+          parseInt(boardGrid[tempXAxis - 1][yAxis].getAttribute("value")) == 0
+        ) {
+          boardGrid[tempXAxis - 1][yAxis].setAttribute(
+            "value",
+            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
+          );
+          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
+          tempXAxis--;
+          if (tempXAxis == 0) break;
+        }
       }
     }
   }
@@ -127,6 +156,22 @@ function moveTilesLeft() {
         boardGrid[xAxis][yAxis + 1].setAttribute("value", 0);
       }
     }
+    for (let yAxis = 1; yAxis <= 3; yAxis++) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempYAxis = yAxis;
+        while (
+          parseInt(boardGrid[xAxis][tempYAxis - 1].getAttribute("value")) == 0
+        ) {
+          boardGrid[xAxis][tempYAxis - 1].setAttribute(
+            "value",
+            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
+          );
+          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
+          tempYAxis--;
+          if (tempYAxis == 0) break;
+        }
+      }
+    }
   }
   genNewTile();
 }
@@ -159,6 +204,22 @@ function moveTilesDown() {
           parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis - 1][yAxis].setAttribute("value", 0);
+      }
+    }
+    for (let xAxis = 2; xAxis >= 0; xAxis--) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempXAxis = xAxis;
+        while (
+          parseInt(boardGrid[tempXAxis + 1][yAxis].getAttribute("value")) == 0
+        ) {
+          boardGrid[tempXAxis + 1][yAxis].setAttribute(
+            "value",
+            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
+          );
+          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
+          tempXAxis++;
+          if (tempXAxis == 3) break;
+        }
       }
     }
   }
@@ -195,6 +256,22 @@ function moveTilesRight() {
         boardGrid[xAxis][yAxis - 1].setAttribute("value", 0);
       }
     }
+    for (let yAxis = 2; yAxis >= 0; yAxis--) {
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        let tempYAxis = yAxis;
+        while (
+          parseInt(boardGrid[xAxis][tempYAxis + 1].getAttribute("value")) == 0
+        ) {
+          boardGrid[xAxis][tempYAxis + 1].setAttribute(
+            "value",
+            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
+          );
+          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
+          tempYAxis++;
+          if (tempYAxis == 3) break;
+        }
+      }
+    }
   }
   genNewTile();
 }
@@ -209,9 +286,12 @@ rightButton.addEventListener("click", moveTilesRight);
 downButton.addEventListener("click", moveTilesDown);
 leftButton.addEventListener("click", moveTilesLeft);
 
+let instructions = document.getElementById("instruction-text");
+let instructionsImage = document.getElementById("show-instructions-img");
+
 function showInstructions() {
-  let instructions = document.getElementById("instruction-text");
-  let instructionsImage = document.getElementById("show-instructions-img");
+  // let instructions = document.getElementById("instruction-text");
+  // let instructionsImage = document.getElementById("show-instructions-img");
   if (instructions.style.display == "none") {
     instructions.style.display = "block";
     instructionsImage.src = "/Images/InstructionsToggle1A.svg";
