@@ -18,7 +18,7 @@ All tiles will move in the direction chosen by the player is there is enough spa
 
 The player wins if they can merge enough tiles to create a tile with the value of 2048.
 
-If the player rund out of space on the board before they can create a tile of 2048, they lose.
+If the player runs out of space on the board before they can create a tile of 2048, they lose.
 
 
 ## Screenshots
