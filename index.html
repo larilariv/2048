@@ -5,44 +5,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Let's Play 2048</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Play 2048</title>
   </head>
   <body>
-    <h1>2048</h1>
-    <h2>Highest Score: <span id="highest-score">Insert Score Here</span></h2>
-    <h2>Current Score: <span id="current-score">Insert Score Here</span></h2>
-    <h3 id="game-instructions">Instructions</h3>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-      tempora quisquam quibusdam consequuntur dolores, repudiandae voluptatibus
-      dolore saepe perspiciatis deserunt numquam dolorum quod, amet eum
-      similique eligendi suscipit beatae eius.
-    </p>
-    <button type="submit">New Game</button>
-    <div class="game-controls">
-      <button type="submit" id="up-button">Up</button>
-      <button type="submit" id="right-button">Right</button>
-      <button type="submit" id="down-button">Down</button>
-      <button type="submit" id="left-button">Left</button>
+    <img id="title-image" src="https://github.com/larilariv/2048/blob/main/Images/Title.png?raw=true" />
+    <div id="board-scores-controls">
+      <div class="game-board">
+        <div id="win-scenario-modal">
+          <div id="win-modal-textbox">
+            <p id="win-msg">You reached</br>2048!</p>
+            <p id="keep-playing-msg">Keep playing to reach 4096 and beyond!</p>
+            <button type="button" id="keep-playing">Keep Playing</button>
+          </div>
+        </div>
+
+        <div id="lose-scenario-modal">
+          <div id="lose-modal-textbox">
+            <p id="lose-msg">You didn't reach 2048!</p>
+            <p>Click the icon below to try again!</p>
+            <button type="button" id="try-again">Try Again</button>
+          </div>
+        </div>
+      </div>
+      <div id="scores-controls">
+        <div id="score-counters">
+          <h2 id="current-score-text">
+            Score:
+            <span id="current-score-counter">Insert Score Here</span>
+          </h2>
+        </div>
+        <div id="game-buttons">
+          <button type="submit" id="new-game-button">
+            <img id="new-game-img" src="https://raw.githubusercontent.com/larilariv/2048/66ff4decdb2127137aba9dcbf54a5274388d8003/Images/ResetButton.svg" />
+            <span id="new-game-text">New Game</span>
+          </button>
+          <div id="directional-buttons">
+            <div class="game-controls">
+              <button type="submit" class="direction-button" id="up-button">
+                <img
+                  class="direction-img"
+                  id="up-img"
+                  src="https://raw.githubusercontent.com/larilariv/2048/66ff4decdb2127137aba9dcbf54a5274388d8003/Images/UpButton.svg"
+                />
+              </button>
+              <button type="submit" class="direction-button" id="left-button">
+                <img
+                  class="direction-img"
+                  id="left-img"
+                  src="https://raw.githubusercontent.com/larilariv/2048/66ff4decdb2127137aba9dcbf54a5274388d8003/Images/LeftButton.svg"
+                />
+              </button>
+              <button type="submit" class="direction-button" id="right-button">
+                <img
+                  class="direction-img"
+                  id="right-img"
+                  src="https://raw.githubusercontent.com/larilariv/2048/66ff4decdb2127137aba9dcbf54a5274388d8003/Images/RightButton.svg"
+                />
+              </button>
+              <button type="submit" class="direction-button" id="down-button">
+                <img
+                  class="direction-img"
+                  id="down-img"
+                  src="https://raw.githubusercontent.com/larilariv/2048/66ff4decdb2127137aba9dcbf54a5274388d8003/Images/DownButton.svg"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="game-board">
-      <div class="board-tile" id="tile-1" value="0"></div>
-      <div class="board-tile" id="tile-2" value="0"></div>
-      <div class="board-tile" id="tile-3" value="0"></div>
-      <div class="board-tile" id="tile-4" value="0"></div>
-      <div class="board-tile" id="tile-5" value="0"></div>
-      <div class="board-tile" id="tile-6" value="0"></div>
-      <div class="board-tile" id="tile-7" value="0"></div>
-      <div class="board-tile" id="tile-8" value="0"></div>
-      <div class="board-tile" id="tile-9" value="0"></div>
-      <div class="board-tile" id="tile-10" value="0"></div>
-      <div class="board-tile" id="tile-11" value="0"></div>
-      <div class="board-tile" id="tile-12" value="0"></div>
-      <div class="board-tile" id="tile-13" value="0"></div>
-      <div class="board-tile" id="tile-14" value="0"></div>
-      <div class="board-tile" id="tile-15" value="0"></div>
-      <div class="board-tile" id="tile-16" value="0"></div>
+    <div id="game-instructions">
+      <div id="instructions-header">
+        <button type="submit" id="show-instructions">
+          <img
+            id="show-instructions-img"
+            src="https://raw.githubusercontent.com/larilariv/2048/66ff4decdb2127137aba9dcbf54a5274388d8003/Images/InstructionsToggle1B.svg"
+          /></button
+        >How to Play
+      </div>
+      <div id="instruction-text" style="display: none">
+        <p>
+          Use the <b>buttons on screen</b> to move the tiles across the board.
+        </p>
+        <p>
+          When tiles of the <b>same value</b> collide, they combine to create a
+          new tile.
+        </p>
+        <p>
+          You <b>win the game</b> when you combine enough tiles to create a tile of
+          <b>2048</b>!
+        </p>
+      </div>
     </div>
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
   </body>
 </html>
