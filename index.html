@@ -11,43 +11,71 @@
       href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Let's Play 2048</title>
+    <title>Play 2048</title>
   </head>
   <body>
-    <h1>2048</h1>
+    <img id="title-image" src="/Images/Title.png" />
     <div id="board-scores-controls">
-      <div class="game-board" id="game-board"></div>
+      <div class="game-board">
+        <div id="win-scenario-modal">
+          <div id="win-modal-textbox">
+            <p id="win-msg">You reached</br>2048!</p>
+            <p id="keep-playing-msg">Keep playing to reach 4096 and beyond!</p>
+            <button type="button" id="keep-playing">Keep Playing</button>
+          </div>
+        </div>
+
+        <div id="lose-scenario-modal">
+          <div id="lose-modal-textbox">
+            <p id="lose-msg">You didn't reach 2048!</p>
+            <p>Click the icon below to try again!</p>
+            <button type="button" id="try-again">Try Again</button>
+          </div>
+        </div>
+      </div>
       <div id="scores-controls">
         <div id="score-counters">
-          <h2 id="highest-score-text">
-            Highest Score:
-            <span id="highest-score-counter">Insert Score Here</span>
-          </h2>
-          <h3 id="current-score-text">
-            Current Score:
+          <h2 id="current-score-text">
+            Score:
             <span id="current-score-counter">Insert Score Here</span>
-          </h3>
+          </h2>
         </div>
         <div id="game-buttons">
           <button type="submit" id="new-game-button">
             <img id="new-game-img" src="/Images/ResetButton.svg" />
+            <span id="new-game-text">New Game</span>
           </button>
-          <div class="game-controls">
-            <button type="submit" class="direction-button" id="up-button">
-              <img class="direction-img" src="/Images/UpButton.svg" />
-            </button>
-            <div class="left-right-buttons">
+          <div id="directional-buttons">
+            <div class="game-controls">
+              <button type="submit" class="direction-button" id="up-button">
+                <img
+                  class="direction-img"
+                  id="up-img"
+                  src="/Images/UpButton.svg"
+                />
+              </button>
               <button type="submit" class="direction-button" id="left-button">
-                <img class="direction-img" src="/Images/LeftButton.svg" />
+                <img
+                  class="direction-img"
+                  id="left-img"
+                  src="/Images/LeftButton.svg"
+                />
               </button>
               <button type="submit" class="direction-button" id="right-button">
-                <img class="direction-img" src="/Images/RightButton.svg" />
+                <img
+                  class="direction-img"
+                  id="right-img"
+                  src="/Images/RightButton.svg"
+                />
+              </button>
+              <button type="submit" class="direction-button" id="down-button">
+                <img
+                  class="direction-img"
+                  id="down-img"
+                  src="/Images/DownButton.svg"
+                />
               </button>
             </div>
-            <button type="submit" class="direction-button" id="down-button">
-              <img class="direction-img" src="/Images/DownButton.svg" />
-            </button>
           </div>
         </div>
       </div>
@@ -61,14 +89,20 @@
           /></button
         >How to Play
       </div>
-      <p id="instruction-text">
-        Use the directional buttons on screen or your arrow keys to move the
-        tiles across the board.
-        <br />When tiles of the same value collide, they combine to create a new
-        tile. <br />You win the game when you combine enough tiles to create a
-        tile of 2048!
-      </p>
+      <div id="instruction-text" style="display: none">
+        <p>
+          Use the <b>buttons on screen</b> to move the tiles across the board.
+        </p>
+        <p>
+          When tiles of the <b>same value</b> collide, they combine to create a
+          new tile.
+        </p>
+        <p>
+          You <b>win the game</b> when you combine enough tiles to create a tile of
+          <b>2048</b>!
+        </p>
+      </div>
     </div>
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
   </body>
 </html>
