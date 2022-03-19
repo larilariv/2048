@@ -1,22 +1,349 @@
 body {
-  background-color: aliceblue;
+  background-color: rgb(235, 235, 235);
+  font-family: "Comfortaa", sans-serif;
+  text-align: center;
+  background-image: url(https://github.com/larilariv/2048/blob/main/Images/concrete_seamless.png?raw=true);
+}
+
+#title-image {
+  height: 250px;
+  margin-top: -20px;
+  margin-bottom: -45px;
+}
+
+#board-scores-controls {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  background-color: rgb(212, 212, 212, 0.6);
+  margin: 30px 100px 30px 100px;
+  padding: 50px 0 50px 0;
+  border-radius: 7px;
 }
 
 .game-board {
   background-color: gray;
+  height: 400px;
+  width: 400px;
   display: grid;
   grid-template-columns: repeat(4, 100px);
   grid-template-rows: repeat(4, 100px);
-  justify-content: center;
-  gap: 5px;
-  margin-top: 20px;
+  border: 5px solid #808080;
+  border-radius: 5px;
 }
 
 .board-tile {
-  background: lightgray;
+  border: 5px solid #808080;
+}
+
+#win-scenario-modal {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: auto;
+  display: none;
+}
+
+#lose-scenario-modal {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: auto;
+  display: none;
+}
+
+#win-modal-textbox {
+  background-color: rgb(154, 205, 50, 0.9);
+  height: 400px;
+  width: 400px;
+  border-radius: 2px;
+  margin: 150px auto;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+#lose-modal-textbox {
+  background-color: rgb(255, 102, 0, 0.9);
+  height: 400px;
+  width: 400px;
+  border-radius: 2px;
+  margin: 150px auto;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+div[value="0"] {
+  background-color: #d3d3d3;
+}
+
+div[value="2"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/2Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="4"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/4Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="8"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/8Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="16"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/16Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="32"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/32Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="64"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/64Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="128"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/128Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="256"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/256Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="512"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/512Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="1024"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/1024Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="2048"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/2048Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="4096"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/4096Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+div[value="8192"] {
+  content: url(https://github.com/larilariv/2048/blob/main/Images/8192Tile.png?raw=true);
+  height: 90px;
+  width: 90px;
+}
+
+#win-scenario-modal {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: auto;
+  display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#win-modal-textbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(154, 205, 50, 0.9);
+  height: 700px;
+  width: 1000px;
+  border-radius: 2px;
+  margin: 150px auto;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  font-size: 25px;
+}
+
+#lose-scenario-modal {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: auto;
+  display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#lose-modal-textbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 102, 0, 0.9);
+  height: 700px;
+  width: 1000px;
+  border-radius: 2px;
+  margin: 150px auto;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  font-size: 25px;
+}
+
+#win-msg,
+#lose-msg {
+  font-weight: 600;
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
+#keep-playing,
+#try-again {
+  background-color: rgb(212, 212, 212);
+  border: none;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 25px;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#scores-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 410px;
+  width: 410px;
+}
+
+#current-score-text {
+  font-size: 30px;
+}
+
+#new-game-button {
+  background-color: rgba(212, 212, 212);
+  border: none;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 30px;
+  line-height: 50px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#new-game-text {
+  line-height: 20px;
+}
+
+#new-game-img {
+  height: 30px;
+  width: 30px;
+  padding-top: 10px;
+}
+
+.game-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 75px);
+  grid-template-rows: repeat(3, 75px);
+  margin-bottom: 20px;
+}
+
+#directional-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid black;
-  font-size: 40px;
+}
+
+.direction-button {
+  background-color: transparent;
+  border: none;
+  height: 75px;
+  width: 75px;
+}
+
+#up-button,
+#up-img {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+
+#left-button,
+#left-img {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+}
+
+#right-button,
+#right-img {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
+}
+
+#down-button,
+#down-img {
+  grid-column: 2 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.direction-img {
+  height: 75px;
+  width: 75px;
+}
+
+#instructions-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  background-color: rgb(212, 212, 212, 0.7);
+  margin: 0 450px 0 450px;
+  border-radius: 5px;
+}
+
+#show-instructions-img {
+  height: 20px;
+  width: 20px;
+}
+
+#show-instructions {
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  margin: 5px;
+}
+
+#instruction-text {
+  background-color: rgb(212, 212, 212, 0.7);
+  margin: 0 50px 0 50px;
+  font-size: 20px;
+  line-height: 30px;
+  border-radius: 5px;
 }
