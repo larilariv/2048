@@ -1,12 +1,8 @@
-//Grabbing Elements
-const winModalTest = document.getElementById("win-modal-test-btn");
 const winModal = document.getElementById("win-scenario-modal");
 const keepPlayingButton = document.getElementById("keep-playing");
-const loseModalTest = document.getElementById("lose-modal-test-btn");
 const loseModal = document.getElementById("lose-scenario-modal");
 const tryAgainButton = document.getElementById("try-again");
 
-//Functions
 const openWinModal = () => {
   winModal.style.display = "block";
 };
@@ -23,8 +19,6 @@ function tryAgain() {
   loseModal.style.display = "none";
 }
 
-winModalTest.addEventListener("click", openWinModal);
-loseModalTest.addEventListener("click", openLoseModal);
 keepPlayingButton.addEventListener("click", keepPlaying);
 tryAgainButton.addEventListener("click", tryAgain);
 
@@ -54,6 +48,7 @@ function setNewGame() {
 setNewGame();
 
 const newGameButton = document.querySelector("#new-game-button");
+
 newGameButton.addEventListener("click", resetBoard);
 
 function getRandomNum(max) {
@@ -62,17 +57,24 @@ function getRandomNum(max) {
 }
 
 function calculateScore() {
+  let occupiedTiles = [];
   currentScoreCounter = 0;
   for (let xAxis = 0; xAxis <= 3; xAxis++) {
     for (let yAxis = 0; yAxis <= 3; yAxis++) {
-      tileValue = parseInt(boardGrid[xAxis][yAxis].getAttribute("value"));
-      if (tileValue == 2048) {
-        winModal.style.display = "block";
+      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+        tileValue = parseInt(boardGrid[xAxis][yAxis].getAttribute("value"));
+        if (tileValue == 2048) {
+          winModal.style.display = "block";
+        }
+        currentScoreCounter += tileValue;
+        document.querySelector("#current-score-counter").innerHTML =
+          currentScoreCounter;
+        occupiedTiles.push(tileValue);
       }
-      currentScoreCounter += tileValue;
-      document.querySelector("#current-score-counter").innerHTML =
-        currentScoreCounter;
     }
+  }
+  if (occupiedTiles.length === 16) {
+    loseModal.style.display = "block";
   }
 }
 
@@ -118,7 +120,6 @@ function moveTilesUp() {
           parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis + 1][yAxis].setAttribute("value", 0);
-        // winScencario();
       }
     }
     removeSpacesUp();
@@ -156,7 +157,6 @@ function moveTilesLeft() {
           parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis][yAxis + 1].setAttribute("value", 0);
-        // winScencario();
       }
     }
     removeSpacesLeft();
@@ -194,7 +194,6 @@ function moveTilesDown() {
           parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis - 1][yAxis].setAttribute("value", 0);
-        // winScencario();
       }
     }
     removeSpacesDown();
@@ -232,7 +231,6 @@ function moveTilesRight() {
           parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis][yAxis - 1].setAttribute("value", 0);
-        // winScencario();
       }
     }
     removeSpacesRight();
