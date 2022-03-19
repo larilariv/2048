@@ -16,8 +16,27 @@
   </head>
   <body>
     <h1>2048</h1>
+    <button id="win-modal-test-btn">Test Win Modal</button>
+
+    <button id="lose-modal-test-btn">Test Lose Modal</button>
+
     <div id="board-scores-controls">
-      <div class="game-board" id="game-board"></div>
+      <div class="game-board" id="game-board">
+        <div id="win-scenario-modal">
+          <div id="win-modal-textbox">
+            <p>You reached 2048!</p>
+            <p>Keep playing to reach 4096 and beyond!</p>
+            <a type="submit" id="keep-playing" href="#">Keep Playing</a>
+          </div>
+        </div>
+        <div id="lose-scenario-modal">
+          <div id="lose-modal-textbox">
+            <p>You didn't reach 2048!</p>
+            <p>Click the icon below to try again!</p>
+            <a type="submit" id="try-again" href="#">Try Again</a>
+          </div>
+        </div>
+      </div>
       <div id="scores-controls">
         <div id="score-counters">
           <h2 id="highest-score-text">

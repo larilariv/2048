@@ -1,3 +1,33 @@
+//Grabbing Elements
+const winModalTest = document.getElementById("win-modal-test-btn");
+const winModal = document.getElementById("win-scenario-modal");
+const keepPlayingButton = document.getElementById("keep-playing");
+const loseModalTest = document.getElementById("lose-modal-test-btn");
+const loseModal = document.getElementById("lose-scenario-modal");
+const tryAgainButton = document.getElementById("try-again");
+
+//Functions
+const openWinModal = () => {
+  winModal.style.display = "block";
+};
+
+function keepPlaying() {
+  winModal.style.display = "none";
+}
+
+const openLoseModal = () => {
+  loseModal.style.display = "block";
+};
+
+function tryAgain() {
+  loseModal.style.display = "none";
+}
+
+winModalTest.addEventListener("click", openWinModal);
+loseModalTest.addEventListener("click", openLoseModal);
+keepPlayingButton.addEventListener("click", keepPlaying);
+tryAgainButton.addEventListener("click", tryAgain);
+
 const gameBoard = document.querySelector(".game-board");
 
 let boardGrid = [];
@@ -20,32 +50,11 @@ function setNewGame() {
   }
   genNewTile();
   genNewTile();
-  //   return gameBoard;
 }
 setNewGame();
-// find way to load boardGrid on page load so the board is set up to play right away
-// find way to reload boardGrid on click of New Game button
-//~10 lines of code 30min of work
-//Possibly a for loop that run through each square, either set it's innerHTML to blank
-// $("#mydiv").load(location.href + " #mydiv");
-//Highest Score- look into local storage
-
-// $("#new-game-Button").click(setNewGame() {
-//   $(".game-board").load(".game-board");
-// })
-
-// function resetBoard() {
-//   $(".game-board").load(location.href + " .game-board .board-tile");
-// }
-
-function reload() {
-  reload = location.reload();
-}
 
 const newGameButton = document.querySelector("#new-game-button");
-newGameButton.addEventListener("click", reload, false);
-//^Works for reloading the whole page on click of New Game button
-// need to work on on reloading only the board on click of New Game Button
+newGameButton.addEventListener("click", resetBoard);
 
 function getRandomNum(max) {
   let randomNum = Math.floor(Math.random() * max);
@@ -57,6 +66,9 @@ function calculateScore() {
   for (let xAxis = 0; xAxis <= 3; xAxis++) {
     for (let yAxis = 0; yAxis <= 3; yAxis++) {
       tileValue = parseInt(boardGrid[xAxis][yAxis].getAttribute("value"));
+      if (tileValue == 2048) {
+        winModal.style.display = "block";
+      }
       currentScoreCounter += tileValue;
       document.querySelector("#current-score-counter").innerHTML =
         currentScoreCounter;
@@ -78,19 +90,21 @@ function genNewTile() {
 
 function moveTilesUp() {
   for (let yAxis = 0; yAxis <= 3; yAxis++) {
-    for (let xAxis = 1; xAxis <= 3; xAxis++) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempXAxis = xAxis;
-        while (
-          parseInt(boardGrid[tempXAxis - 1][yAxis].getAttribute("value")) == 0
-        ) {
-          boardGrid[tempXAxis - 1][yAxis].setAttribute(
-            "value",
-            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
-          );
-          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
-          tempXAxis--;
-          if (tempXAxis == 0) break;
+    function removeSpacesUp() {
+      for (let xAxis = 1; xAxis <= 3; xAxis++) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+          let tempXAxis = xAxis;
+          while (
+            parseInt(boardGrid[tempXAxis - 1][yAxis].getAttribute("value")) == 0
+          ) {
+            boardGrid[tempXAxis - 1][yAxis].setAttribute(
+              "value",
+              parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
+            );
+            boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
+            tempXAxis--;
+            if (tempXAxis == 0) break;
+          }
         }
       }
     }
@@ -104,43 +118,31 @@ function moveTilesUp() {
           parseInt(boardGrid[xAxis + 1][yAxis].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis + 1][yAxis].setAttribute("value", 0);
+        // winScencario();
       }
     }
-    for (let xAxis = 1; xAxis <= 3; xAxis++) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempXAxis = xAxis;
-        while (
-          parseInt(boardGrid[tempXAxis - 1][yAxis].getAttribute("value")) == 0
-        ) {
-          boardGrid[tempXAxis - 1][yAxis].setAttribute(
-            "value",
-            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
-          );
-          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
-          tempXAxis--;
-          if (tempXAxis == 0) break;
-        }
-      }
-    }
+    removeSpacesUp();
   }
   genNewTile();
 }
 
 function moveTilesLeft() {
   for (let xAxis = 0; xAxis <= 3; xAxis++) {
-    for (let yAxis = 1; yAxis <= 3; yAxis++) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempYAxis = yAxis;
-        while (
-          parseInt(boardGrid[xAxis][tempYAxis - 1].getAttribute("value")) == 0
-        ) {
-          boardGrid[xAxis][tempYAxis - 1].setAttribute(
-            "value",
-            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
-          );
-          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
-          tempYAxis--;
-          if (tempYAxis == 0) break;
+    function removeSpacesLeft() {
+      for (let yAxis = 1; yAxis <= 3; yAxis++) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+          let tempYAxis = yAxis;
+          while (
+            parseInt(boardGrid[xAxis][tempYAxis - 1].getAttribute("value")) == 0
+          ) {
+            boardGrid[xAxis][tempYAxis - 1].setAttribute(
+              "value",
+              parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
+            );
+            boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
+            tempYAxis--;
+            if (tempYAxis == 0) break;
+          }
         }
       }
     }
@@ -154,43 +156,31 @@ function moveTilesLeft() {
           parseInt(boardGrid[xAxis][yAxis + 1].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis][yAxis + 1].setAttribute("value", 0);
+        // winScencario();
       }
     }
-    for (let yAxis = 1; yAxis <= 3; yAxis++) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempYAxis = yAxis;
-        while (
-          parseInt(boardGrid[xAxis][tempYAxis - 1].getAttribute("value")) == 0
-        ) {
-          boardGrid[xAxis][tempYAxis - 1].setAttribute(
-            "value",
-            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
-          );
-          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
-          tempYAxis--;
-          if (tempYAxis == 0) break;
-        }
-      }
-    }
+    removeSpacesLeft();
   }
   genNewTile();
 }
 
 function moveTilesDown() {
   for (let yAxis = 3; yAxis >= 0; yAxis--) {
-    for (let xAxis = 2; xAxis >= 0; xAxis--) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempXAxis = xAxis;
-        while (
-          parseInt(boardGrid[tempXAxis + 1][yAxis].getAttribute("value")) == 0
-        ) {
-          boardGrid[tempXAxis + 1][yAxis].setAttribute(
-            "value",
-            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
-          );
-          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
-          tempXAxis++;
-          if (tempXAxis == 3) break;
+    function removeSpacesDown() {
+      for (let xAxis = 2; xAxis >= 0; xAxis--) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+          let tempXAxis = xAxis;
+          while (
+            parseInt(boardGrid[tempXAxis + 1][yAxis].getAttribute("value")) == 0
+          ) {
+            boardGrid[tempXAxis + 1][yAxis].setAttribute(
+              "value",
+              parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
+            );
+            boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
+            tempXAxis++;
+            if (tempXAxis == 3) break;
+          }
         }
       }
     }
@@ -204,43 +194,31 @@ function moveTilesDown() {
           parseInt(boardGrid[xAxis - 1][yAxis].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis - 1][yAxis].setAttribute("value", 0);
+        // winScencario();
       }
     }
-    for (let xAxis = 2; xAxis >= 0; xAxis--) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempXAxis = xAxis;
-        while (
-          parseInt(boardGrid[tempXAxis + 1][yAxis].getAttribute("value")) == 0
-        ) {
-          boardGrid[tempXAxis + 1][yAxis].setAttribute(
-            "value",
-            parseInt(boardGrid[tempXAxis][yAxis].getAttribute("value"))
-          );
-          boardGrid[tempXAxis][yAxis].setAttribute("value", 0);
-          tempXAxis++;
-          if (tempXAxis == 3) break;
-        }
-      }
-    }
+    removeSpacesDown();
   }
   genNewTile();
 }
 
 function moveTilesRight() {
   for (let xAxis = 3; xAxis >= 0; xAxis--) {
-    for (let yAxis = 2; yAxis >= 0; yAxis--) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempYAxis = yAxis;
-        while (
-          parseInt(boardGrid[xAxis][tempYAxis + 1].getAttribute("value")) == 0
-        ) {
-          boardGrid[xAxis][tempYAxis + 1].setAttribute(
-            "value",
-            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
-          );
-          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
-          tempYAxis++;
-          if (tempYAxis == 3) break;
+    function removeSpacesRight() {
+      for (let yAxis = 2; yAxis >= 0; yAxis--) {
+        if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
+          let tempYAxis = yAxis;
+          while (
+            parseInt(boardGrid[xAxis][tempYAxis + 1].getAttribute("value")) == 0
+          ) {
+            boardGrid[xAxis][tempYAxis + 1].setAttribute(
+              "value",
+              parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
+            );
+            boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
+            tempYAxis++;
+            if (tempYAxis == 3) break;
+          }
         }
       }
     }
@@ -254,24 +232,10 @@ function moveTilesRight() {
           parseInt(boardGrid[xAxis][yAxis - 1].getAttribute("value"));
         boardGrid[xAxis][yAxis].setAttribute("value", sumOfTiles);
         boardGrid[xAxis][yAxis - 1].setAttribute("value", 0);
+        // winScencario();
       }
     }
-    for (let yAxis = 2; yAxis >= 0; yAxis--) {
-      if (parseInt(boardGrid[xAxis][yAxis].getAttribute("value")) > 0) {
-        let tempYAxis = yAxis;
-        while (
-          parseInt(boardGrid[xAxis][tempYAxis + 1].getAttribute("value")) == 0
-        ) {
-          boardGrid[xAxis][tempYAxis + 1].setAttribute(
-            "value",
-            parseInt(boardGrid[xAxis][tempYAxis].getAttribute("value"))
-          );
-          boardGrid[xAxis][tempYAxis].setAttribute("value", 0);
-          tempYAxis++;
-          if (tempYAxis == 3) break;
-        }
-      }
-    }
+    removeSpacesRight();
   }
   genNewTile();
 }
@@ -290,8 +254,6 @@ let instructions = document.getElementById("instruction-text");
 let instructionsImage = document.getElementById("show-instructions-img");
 
 function showInstructions() {
-  // let instructions = document.getElementById("instruction-text");
-  // let instructionsImage = document.getElementById("show-instructions-img");
   if (instructions.style.display == "none") {
     instructions.style.display = "block";
     instructionsImage.src = "/Images/InstructionsToggle1A.svg";
@@ -303,3 +265,9 @@ function showInstructions() {
 
 const showInstructionsButton = document.getElementById("show-instructions");
 showInstructionsButton.addEventListener("click", showInstructions);
+
+function resetBoard() {
+  gameBoard.innerHTML = "";
+  setNewGame();
+  calculateScore();
+}

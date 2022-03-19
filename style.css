@@ -9,6 +9,48 @@ h1 {
   margin: 0vw 01vh;
 }
 
+#win-scenario-modal {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: auto;
+  display: none;
+}
+
+#lose-scenario-modal {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: auto;
+  display: none;
+}
+
+#win-modal-textbox {
+  background-color: rgb(154, 205, 50, 0.9);
+  height: 400px;
+  width: 400px;
+  border-radius: 2px;
+  margin: 150px auto;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+#lose-modal-textbox {
+  background-color: rgb(255, 102, 0, 0.9);
+  height: 400px;
+  width: 400px;
+  border-radius: 2px;
+  margin: 150px auto;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
 #board-scores-controls {
   display: flex;
   justify-content: center;
