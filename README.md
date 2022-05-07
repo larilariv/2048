@@ -1,7 +1,7 @@
 # 2048
 Recreation of the puzzle game 2048.
 
-**Live Link** [play here](https://larilariv.github.io/2048/)
+[**Play Here**](https://larilariv.github.io/2048/)
 
 ## Project Description
 
