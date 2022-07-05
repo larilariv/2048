@@ -63,7 +63,7 @@ As a player, I would like there to be a dark mode option so I can play without e
 ## Features to Improve in Future
 - Addition of Highest Score count, saved locally
 - Improvement in accuracy of Win Scenario
-- Improvement in accuracy of Win Scenario
+- Improvement in accuracy of Lose Scenario
 - Placement of the win and lose modals over the game board
 - Allow use of keyboard arrow keys for tile movement
 - Create animation for tile movement
