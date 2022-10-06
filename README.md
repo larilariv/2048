@@ -1,5 +1,9 @@
 # 2048
-This project is a recreation of the puzzle game 2048.
+A recreation of the puzzle game 2048.
+
+<p align="center">
+  <img width="750" src="https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.26.52%20AM.png?raw=true">
+</p>
 
 [**Play Here**](https://larilariv.github.io/2048/)
 
@@ -22,14 +26,21 @@ If the player runs out of space on the board before they can create a tile of 20
 
 
 ## Screenshots
-![Main Page](https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.26.52%20AM.png?raw=true)
 
-![Instructions Toggle Open](https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.24.42%20AM.png?raw=true)
+### Instructions Toggle Open
+<p align="center">
+  <img width="750" src="https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.24.42%20AM.png?raw=true">
+</p>
 
-![Win Scenario](https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.28.47%20AM.png?raw=true)
+### Win Scenario
+<p align="center">
+  <img width="750" src="https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.28.47%20AM.png?raw=true">
+</p>
 
-![Lose Scenario](https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.27.07%20AM.png?raw=true)
-
+### Lose Scenario
+<p align="center">
+  <img width="750" src="https://github.com/larilariv/2048/blob/main/Images/Screen%20Shot%202022-03-19%20at%208.27.07%20AM.png?raw=true">
+</p>
 
 ## Project Goals
 ### MVP Goals
